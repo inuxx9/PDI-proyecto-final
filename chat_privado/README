@@ -1,0 +1,172 @@
+💬 Chat y Llamada de Voz (Python + Tkinter + Sockets)
+
+Esta es una aplicación de escritorio desarrollada en Python que permite la comunicación de chat y llamadas de voz en tiempo real a través de una red local (LAN).
+Combina el uso de Tkinter (interfaz gráfica), sockets TCP/UDP (comunicación en red) y PyAudio (transmisión de audio).
+
+🚀 Características
+
+💭 Chat: Comunicación de texto persistente usando TCP.
+
+🎙️ Llamada de Voz: Transmisión de audio en tiempo real usando UDP (requiere micrófono y altavoces).
+
+👥 Multi-Cliente: El servidor puede manejar múltiples clientes de chat simultáneamente.
+
+📦 Ejecutable: Empaquetado automáticamente mediante un script (build.bat) para generar un archivo .exe de fácil distribución.
+
+🛠️ Requisitos y Dependencias
+🔧 Requisitos del Sistema
+
+Python 3.x
+
+Micrófono y altavoces (para la llamada de voz)
+
+Conexión a una red local (LAN)
+
+📦 Dependencias
+
+Para ejecutar el programa desde el código fuente, instala las siguientes dependencias:
+
+pip install pyaudio
+
+
+⚠️ Tkinter viene incluido en la mayoría de las instalaciones estándar de Python.
+
+⚙️ Configuración (Archivo config.ini)
+
+La aplicación puede funcionar en modo Servidor o modo Cliente, configurado desde el archivo config.ini ubicado junto a chat_call.py o el ejecutable.
+
+🖥️ 1. Modo Servidor
+
+Ejemplo de configuración:
+
+[SETTINGS]
+username = Servidor
+mode = server
+host = 0.0.0.0
+port_chat = 65432
+port_voice = 65433
+
+Clave	Valor	Descripción
+username	Servidor	Nombre que se mostrará en el chat.
+mode	server	Indica el modo servidor.
+host	0.0.0.0	Escucha en todas las interfaces de red.
+port_chat	65432	Puerto TCP para el chat.
+port_voice	65433	Puerto UDP para la transmisión de voz.
+💻 2. Modo Cliente
+
+Ejemplo de configuración:
+
+[SETTINGS]
+username = Cliente1
+mode = client
+host = 192.168.0.10
+port_chat = 65432
+port_voice = 65433
+
+
+Reemplaza 192.168.0.10 con la IP del servidor dentro de tu red local.
+
+🚀 Guía de Uso
+
+Sigue estos pasos para establecer comunicación correctamente:
+
+🧩 Paso 1: Iniciar el Servidor
+
+Edita config.ini y coloca mode = server.
+
+Ejecuta la aplicación en la PC que actuará como servidor.
+
+Verifica que se muestre el mensaje de que el servidor está escuchando conexiones.
+
+💬 Paso 2: Conectar Clientes
+
+Edita el archivo config.ini en los clientes con:
+
+mode = client
+
+host = <IP del servidor>
+
+Ejecuta la aplicación.
+
+Envía mensajes y prueba la llamada de voz.
+
+⚙️ Instalación y Ejecución del Programa
+
+Puedes ejecutar la aplicación directamente desde el código fuente o crear el ejecutable (.exe) usando el script build.bat.
+
+🧩 Opción 1: Ejecutar desde el código fuente
+
+Asegúrate de tener Python 3.x instalado.
+
+Abre una terminal (CMD o PowerShell) en la carpeta del proyecto.
+
+Instala las dependencias necesarias:
+
+pip install pyaudio
+
+
+Ejecuta la aplicación:
+
+python chat_call.py
+
+
+La interfaz gráfica se abrirá y cargará la configuración desde config.ini.
+
+📦 Opción 2: Crear el ejecutable con build.bat
+
+El proyecto incluye un archivo llamado build.bat que genera automáticamente el ejecutable de la aplicación.
+
+🧱 Paso 1: Instalar PyInstaller
+
+Antes de usar el script, instala PyInstaller:
+
+pip install pyinstaller
+
+⚙️ Paso 2: Ejecutar el script de compilación
+
+Ejecuta el archivo build.bat con doble clic o desde la terminal:
+
+build.bat
+
+
+El script empaqueta el archivo principal chat_call.py en un ejecutable .exe dentro de la carpeta dist/.
+
+El contenido generado será algo como:
+
+📁 Proyecto/
+ ├── build.bat
+ ├── chat_call.py
+ ├── config.ini
+ ├── dist/
+ │   └── chat_call.exe
+ └── README.md
+
+🚀 Paso 3: Ejecutar el programa compilado
+
+Copia chat_call.exe y config.ini en la misma carpeta.
+
+Haz doble clic en chat_call.exe para iniciar la aplicación.
+
+Asegúrate de que el archivo config.ini tenga la configuración correcta (modo servidor o cliente).
+
+En caso de que Windows muestre una advertencia de seguridad, selecciona
+“Más información” → “Ejecutar de todas formas”.
+
+🧰 Solución de Problemas
+Problema	Posible Causa	Solución
+❌ No se puede conectar al servidor	IP incorrecta o firewall bloqueando la conexión	Verifica la IP del servidor y permite la aplicación en el firewall.
+🔇 No se escucha audio	Micrófono o altavoces no detectados	Comprueba los dispositivos de entrada/salida del sistema.
+⚠️ “Address already in use”	Puerto ocupado	Cambia port_chat y port_voice en config.ini.
+💡 Consejos
+
+Usa IPs estáticas dentro de la red local.
+
+Asegúrate de que ambos equipos estén en la misma red Wi-Fi o LAN.
+
+Cierra correctamente la ventana del programa para liberar los sockets.
+
+Puedes cambiar los puertos si tu red ya los usa.
+
+🧑‍💻 Autor
+Desarrollado por Joaquín Leguizamón
+💡 Proyecto educativo para la implementación de comunicación en red (TCP/UDP) y transmisión de audio en tiempo real con Python y Tkinter.
